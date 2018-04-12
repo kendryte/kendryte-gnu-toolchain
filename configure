@@ -3347,7 +3347,7 @@ if test "x$with_cmodel" != x; then :
   cmodel=-mcmodel=$with_cmodel
 
 else
-  cmodel=-mcmodel=medlow
+  cmodel=-mcmodel=medany
 
 fi
 
