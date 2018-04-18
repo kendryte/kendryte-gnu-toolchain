@@ -3,7 +3,7 @@
 	url = git://github.com/riscv/riscv-binutils-gdb.git
 [submodule "riscv-gcc"]
 	path = riscv-gcc
-	url = git://github.com/riscv/riscv-gcc.git
+	url = https://github.com/Canaan-Creative/maix-gcc.git
 [submodule "riscv-glibc"]
 	path = riscv-glibc
 	url = git://github.com/riscv/riscv-glibc.git
