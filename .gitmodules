@@ -6,5 +6,5 @@
 	url = https://github.com/Canaan-Creative/maix-gcc.git
 [submodule "riscv-newlib"]
 	path = riscv-newlib
-	url = https://github.com/bminor/newlib.git
+	url = https://github.com/Canaan-Creative/riscv-newlib.git
 
