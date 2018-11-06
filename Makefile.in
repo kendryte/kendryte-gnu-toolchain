@@ -355,6 +355,7 @@ stamps/build-gcc-newlib-stage1: $(srcdir)/riscv-gcc stamps/build-binutils-newlib
 		--prefix=$(INSTALL_DIR) \
 		--disable-shared \
 		--enable-threads=posix \
+		--enable-libatomic \
 		--enable-tls \
 		--enable-languages=c,c++ \
 		@with_system_zlib@ \
@@ -444,6 +445,7 @@ stamps/build-gcc-newlib-stage2: $(srcdir)/riscv-gcc stamps/build-newlib \
 		--disable-shared \
 		--enable-threads=posix \
 		--enable-languages=c,c++ \
+		--enable-libatomic \
 		@with_system_zlib@ \
 		--enable-tls \
 		--with-newlib \
