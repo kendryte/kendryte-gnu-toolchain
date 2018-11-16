@@ -1,7 +1,7 @@
-MAIX RISC-V GNU Compiler Toolchain
+Kendryte RISC-V GNU Compiler Toolchain
 =============================
 
-This is the MAIX RISC-V C and C++ cross-compiler. It supports two build modes:
+This is the Kendryte RISC-V C and C++ cross-compiler. It supports two build modes:
 a generic ELF/Newlib toolchain and a more sophisticated Linux-ELF/glibc
 toolchain.
 
@@ -9,12 +9,12 @@ toolchain.
 
 This repository uses submodules. You need the --recursive option to fetch the submodules automatically
 
-    $ git clone --recursive https://github.com/Canaan-Creative/maix-toolchain
+    $ git clone --recursive https://github.com/kendryte/kendryte-gnu-toolchain
     
 Alternatively :
 
-    $ git clone https://github.com/Canaan-Creative/maix-toolchain
-    $ cd maix-toolchain
+    $ git clone https://github.com/kendryte/kendryte-gnu-toolchain
+    $ cd kendryte-gnu-toolchain
     $ git submodule update --init --recursive
     
     
@@ -47,63 +47,15 @@ complete the process.
 ### Installation (Newlib)
 
 To build the Newlib cross-compiler, pick an install path.  If you choose,
-say, `/opt/riscv`, then add `/opt/riscv/bin` to your `PATH` now.  Then, simply
+say, `/opt/kendryte-toolchain`, then add `/opt/kendryte-toolchain/bin` to your `PATH` now.  Then, simply
 run the following command:
 
-    ./configure --prefix=/opt/riscv
+    ./configure --prefix=/opt/kendryte-toolchain --with-cmodel=medany
     make
 
 You should now be able to use riscv64-unknown-elf-gcc and its cousins.
-
-### Installation (Linux)
-
-To build the Linux cross-compiler, pick an install path.  If you choose,
-say, `/opt/riscv`, then add `/opt/riscv/bin` to your `PATH` now.  Then, simply
-run the following command:
-
-    ./configure --prefix=/opt/riscv
-    make linux
-
-The build defaults to targetting RV64GC (64-bit), even on a 32-bit build
-environment.  To build the 32-bit RV32GC toolchain, use:
-
-    ./configure --prefix=/opt/riscv --with-arch=rv32gc --with-abi=ilp32d
-    make linux
-
-Supported architectures are rv32i or rv64i plus standard extensions (a)tomics,
-(m)ultiplication and division, (f)loat, (d)ouble, or (g)eneral for MAFD.
-
-Supported ABIs are ilp32 (32-bit soft-float), ilp32d (32-bit hard-float),
-ilp32f (32-bit with single-precision in registers and double in memory, niche
-use only), lp64 lp64f lp64d (same but with 64-bit long and pointers).
-
-### Installation (Linux multilib)
-
-To build the Linux cross-compiler with support for both 32-bit and
-64-bit, run the following commands:
-
-    ./configure --prefix=/opt/riscv --enable-multilib
-    make linux
-
-The multilib compiler will have the prefix riscv64-unknown-linux-gnu-,
-but will be able to target both 32-bit and 64-bit systems.
 
 ### Advanced Options
 
 There are a number of additional options that may be passed to
 configure.  See './configure --help' for more details.
-
-### Test Suite
-
-The DejaGnu test suite has been ported to RISC-V.  This can run with GDB
-simulator for elf toolchain or Qemu for linux toolchain, and GDB simulator
-doesn't support floating-point.
-To test GCC, run the following commands:
-
-    ./configure --prefix=$RISCV --disable-linux --with-arch=rv64ima # or --with-arch=rv32ima
-    make newlib
-    make report-newlib
-
-    ./configure --prefix=$RISCV
-    make linux
-    make report-linux
