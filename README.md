@@ -68,6 +68,18 @@ Ensure you have write access to ```/opt/kendryte-toolchain```
 make -j8
 ```
 
+Static link some libraries:
+
+```bash
+git clone --recursive https://github.com/kendryte/kendryte-gnu-toolchain
+cd kendryte-gnu-toolchain
+cd riscv-gcc
+./contrib/download_prerequisites
+cd ..
+./configure --prefix=/opt/kendryte-toolchain --with-cmodel=medany --with-arch=rv64imafc --with-abi=lp64f
+make -j8
+```
+
 - OSX
 
 ```bash
