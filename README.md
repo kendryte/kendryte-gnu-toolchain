@@ -50,10 +50,30 @@ To build the Newlib cross-compiler, pick an install path.  If you choose,
 say, `/opt/kendryte-toolchain`, then add `/opt/kendryte-toolchain/bin` to your `PATH` now.  Then, simply
 run the following command:
 
-    ./configure --prefix=/opt/kendryte-toolchain --with-cmodel=medany
-    make
+
+```bash
+./configure --prefix=/opt/kendryte-toolchain --with-cmodel=medany --with-arch=rv64imafc --with-abi=lp64f
+make -j8
+```
 
 You should now be able to use riscv64-unknown-elf-gcc and its cousins.
+
+- Linux
+
+Ensure you have write access to ```/opt/kendryte-toolchain```
+
+```bash
+./configure --prefix=/opt/kendryte-toolchain --with-cmodel=medany --with-arch=rv64imafc --with-abi=lp64f
+
+make -j8
+```
+
+- OSX
+
+```bash
+./configure --prefix=/usr/local/opt/kendryte-toolchain --with-cmodel=medany --with-arch=rv64imafc --with-abi=lp64f
+make -j8
+```
 
 ### Advanced Options
 
