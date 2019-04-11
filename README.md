@@ -87,6 +87,57 @@ make -j8
 make -j8
 ```
 
+- Windows
+
+Must cross-compile under linux using mingw.
+
+Install mingw.
+
+```
+sudo apt install binutils-mingw-w64 binutils-mingw-w64-i686 binutils-mingw-w64-x86-64 g++-mingw-w64 g++-mingw-w64-i686 g++-mingw-w64-x86-64 gcc-mingw-w64 gcc-mingw-w64-base gcc-mingw-w64-i686 gcc-mingw-w64-x86-64 libz-mingw-w64-dev mingw-w64-common mingw-w64-i686-dev mingw-w64-x86-64-dev
+
+```
+
+Hack the zlib.
+```bash
+xz -9 /usr/i686-w64-mingw32/lib/libz.dll.a
+xz -9 /usr/i686-w64-mingw32/lib/zlib1.dll
+```
+
+Compile expat-2.2.6
+```bash
+apt install docbook2x
+
+export CC=i686-w64-mingw32-gcc
+export CXX=i686-w64-mingw32-g++
+
+./configure --prefix=/usr/i686-w64-mingw32 --host=i686-w64-mingw32 --disable-shared --enable-static LDFLAGS="-static"
+make -j16
+make install
+
+```
+
+Compile make-4.2
+```bash
+export CHOST=i686-w64-mingw32
+export CC=i686-w64-mingw32-gcc
+export CXX=i686-w64-mingw32-g++
+
+./configure --host=i686-w64-mingw32 --prefix=/opt/kendryte-toolchain LDFLAGS="-static"
+ln -s glob/glob.h .
+make -j16
+make install
+```
+
+Compile toolchain
+```bash
+export CHOST=i686-w64-mingw32
+
+./configure --with-host=i686-w64-mingw32 --host=i686-w64-mingw32 --prefix=/opt/kendryte-toolchain --with-cmodel=medany --with-arch=rv64imafc --with-abi=lp64f LDFLAGS="-static"
+make -j16
+```
+
+
 ### Advanced Options
 
 There are a number of additional options that may be passed to
