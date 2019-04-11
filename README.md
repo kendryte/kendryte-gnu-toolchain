@@ -133,7 +133,12 @@ Compile toolchain
 ```bash
 export CHOST=i686-w64-mingw32
 
-./configure --with-host=i686-w64-mingw32 --host=i686-w64-mingw32 --prefix=/opt/kendryte-toolchain --with-cmodel=medany --with-arch=rv64imafc --with-abi=lp64f LDFLAGS="-static"
+git clone --recursive https://github.com/kendryte/kendryte-gnu-toolchain
+cd kendryte-gnu-toolchain
+cd riscv-gcc
+./contrib/download_prerequisites
+cd ..
+
 make -j16
 ```
 
