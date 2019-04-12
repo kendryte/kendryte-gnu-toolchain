@@ -138,7 +138,7 @@ cd kendryte-gnu-toolchain
 cd riscv-gcc
 ./contrib/download_prerequisites
 cd ..
-
+./configure --prefix=/opt/kendryte-toolchain --host=i686-w64-mingw32 --with-host=i686-w64-mingw32 --with-cmodel=medany --with-arch=rv64imafc --with-abi=lp64f LDFLAGS="-static" --without-system-zlib
 make -j16
 ```
 
